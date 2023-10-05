@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+public class LeftAlign implements AlignOperation{	
+	String currentLine = "";
+	String[] paragragh;
+	int lineLength;
+	ArrayList<Integer> idxList = new ArrayList<Integer>();
+	ArrayList<Integer> lineLengthList = new ArrayList<Integer>();
+
+	public LeftAlign(String[] paragragh, int lineLength){
+		this.paragragh = paragragh;
+		this.lineLength = lineLength;
+		int paraLength = paragragh.length;
+		int count=-1;
+		for(int i=0; i<paraLength; i++){
+			count= (count+paragragh[i].length()+1)%lineLength;
+			if(i<(paraLength-1) & ((count+paragragh[i+1].length())>lineLength || paragragh[i].length()>=lineLength)){
+				this.idxList.add(i);
+				this.lineLengthList.add(count);
+				count=-1;
+			}
+		}
+		this.idxList.add(paraLength-1);
+		this.lineLengthList.add(count+paragragh[paraLength-1].length()+1);
+	}
+	
+	public void printText(){
+		for(int k=0; k<=idxList.get(0);k++){
+			currentLine = currentLine+paragragh[k]+" ";
+		}
+                currentLine = currentLine.trim();
+                String suffix = " "*(lineLength-currentLine.length());
+                currentLine += suffix;
+                System.out.println(currentLine);
+		currentLine = "";
+		for(int j=0; j<idxList.size()-1; j++){
+			for(int k=idxList.get(j)+1; k<=idxList.get(j+1); k++){
+				currentLine= currentLine+paragragh[k]+" ";
+			}
+			currentLine = currentLine.trim();
+			if(currentLine.length()>=this.lineLength){
+				System.out.println(currentLine);
+			}else{
+				currentLine = generateString(currentLine, this.lineLength, " ");
+				System.out.println(currentLine);
+			}
+			currentLine = "";
+		}
+	}
+
+	public String generateString(String input, int length, char paddingChar) {
+    		return String.format("%1$-" + length + "s", input).replace(' ', paddingChar);
+	}
+}
