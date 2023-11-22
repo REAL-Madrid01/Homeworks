@@ -48,9 +48,7 @@ Points to note:
 4. **Filling:** First, you need to select a color, then select a point in the shape you want to fill and slightly drag it (note that just clicking is not enough, you need to slightly draw a point area with the mouse to help the program identify the target shape).
 5. **Scaling:** You need to select a point inside the shape and then drag it towards the center or outside of the shape. You will see the scaled shape. If the scaling is too large, it will exceed the boundary but will not affect the drawing (the program will automatically handle it).
 6. **Changing Border Color:** You need to first select a color, then choose the 'Move' button, and then gently drag the shape. The color of the shape will change as expected.
-7. **Changing Border Thickness:** You need to first adjust the size in 'LineWidth', then choose the 'Move' button
-
- and gently drag the shape. The thickness of the border will change as expected.
+7. **Changing Border Thickness:** You need to first adjust the size in 'LineWidth', then choose the 'Move' button and gently drag the shape. The thickness of the border will change as expected.
 8. **Undo/Redo:** Click to withdraw the current operation or restore the previous operation.
 9. **Save:** Click to select a path and save as CS5001-p3.jpeg image.
 10. **Clean:** Clean Frame
