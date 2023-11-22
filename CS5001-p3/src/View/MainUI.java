@@ -32,7 +32,7 @@ public class MainUI extends JFrame {
      */
     public void initUI(NetworkService networkService) {
 
-        JPanel panel = new JPanel(new GridLayout(0, 7));
+        JPanel panel = new JPanel(new GridLayout(0, 9));
         this.add(panel, BorderLayout.NORTH);
 
         drawingpanel = new DrawingPanel(networkService);
@@ -71,6 +71,14 @@ public class MainUI extends JFrame {
             }
         });
         panel.add(colorChooserButton);
+
+        JSpinner strokeWidthSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
+        strokeWidthSpinner.addChangeListener(e -> {
+            drawingpanel.setStrokeWidth((int) strokeWidthSpinner.getValue());
+        });
+
+        panel.add(new JLabel("lineWidth"));
+        panel.add(strokeWidthSpinner);
 
         JCheckBox moveCheckBox = new JCheckBox("Move");
         JCheckBox fillCheckBox = new JCheckBox("Fill");
@@ -137,13 +145,13 @@ public class MainUI extends JFrame {
         });
         panel.add(reshapeCheckBox);
 
-        JSpinner strokeWidthSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
-        strokeWidthSpinner.addChangeListener(e -> {
-            drawingpanel.setStrokeWidth((int) strokeWidthSpinner.getValue());
-        });
+        JButton cleanFrame = new JButton("Clean");
 
-        panel.add(new JLabel("lineWidth"));
-        panel.add(strokeWidthSpinner);
+        panel.add(cleanFrame);
+
+        cleanFrame.addActionListener(e -> {
+            drawingpanel.cleanFrame();
+        });
 
         JButton saveFrame = new JButton("Save");
 

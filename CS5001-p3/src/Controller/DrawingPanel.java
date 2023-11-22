@@ -462,6 +462,17 @@ public class DrawingPanel extends JPanel {
     }
 
     /**
+     * clean Frame by clear vectorMap.
+     */
+    public void cleanFrame() {
+        this.vectorMap.clear();
+        this.undoStack.clear();
+        this.redoStack.clear();
+        this.selectVec = null;
+        repaint();
+    }
+
+    /**
      * Updates the vector map with a new map, usually received from the network service.
      * Clears the current map and repaints the panel with the new vectors.
      *
