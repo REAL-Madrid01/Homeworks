@@ -53,7 +53,8 @@ Points to note:
  and gently drag the shape. The thickness of the border will change as expected.
 8. **Undo/Redo:** Click to withdraw the current operation or restore the previous operation.
 9. **Save:** Click to select a path and save as CS5001-p3.jpeg image.
-10. **Server Communication:** When you run the `Model.class` and perform operations, you will see the addition of shapes or updates to the server after each operation in the console (based on the token, you will receive a server status:ok message initially).
+10. **Clean:** Clean Frame
+11. **Server Communication:** When you run the `Model.class` and perform operations, you will see the addition of shapes or updates to the server after each operation in the console (based on the token, you will receive a server status:ok message initially).
 
 ## JUnit Testing
 
