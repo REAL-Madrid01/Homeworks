@@ -13,7 +13,8 @@ To use this application, you need to run the provided JAR file on a computer wit
 
 1. Ensure that Java Runtime Environment (JRE) is installed on your computer.
 2. Open the file located at `..\out\artifactsCS5001-p3.jar` or run the following command in the command line to start the application:
-   ```bash java -jar artifactsCS5001.jar
+   ```bash 
+   java -jar artifactsCS5001.jar
    ```
 
 ## Feature Overview
