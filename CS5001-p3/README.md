@@ -62,8 +62,4 @@ JUnit test包含四个测试:
 4. 测试undo与redo是否正常按逻辑运行
 
 ## 附录
-
-测试1:
-
-
-
+6个独立测试位于testExamples文件夹内
