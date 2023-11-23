@@ -6,10 +6,10 @@ import view.MainUI;
 import view.NetworkService;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
+
 import java.awt.*;
 
-public class test {
+public class Test {
 
     public DrawingPanel drawingpanel;
     public NetworkService networkService;
@@ -43,7 +43,7 @@ public class test {
         /**
          * The method to test if Vector and Model can be created.
          */
-        @Test
+        @org.junit.Test
         public void testExist() {
             Assert.assertNotNull(vec1);
             Assert.assertNotNull(vec2);
@@ -55,7 +55,7 @@ public class test {
         /**
          * The method to test if addVector can work.
          */
-        @Test
+        @org.junit.Test
         public void testDrawVectors() throws AWTException{
 
             Assert.assertTrue(drawingpanel.undoStack.size() == 0);
@@ -71,7 +71,7 @@ public class test {
 
         }
 
-    @Test
+    @org.junit.Test
     public void testEditVector() throws AWTException{
 
         drawingpanel.drawVector(vec1, networkService);
@@ -100,7 +100,7 @@ public class test {
         /**
          * The method to test if undo, redo can work.
          */
-        @Test
+        @org.junit.Test
         public void testUndoRedoVector() {
             drawingpanel.drawVector(vec1, networkService);
             drawingpanel.drawVector(vec2, networkService);

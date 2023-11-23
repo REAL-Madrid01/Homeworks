@@ -20,7 +20,7 @@ java -cp .:javax.json-1.0.jar: model.Model
  ```
 finally, using JUnit test codes
 ```bash
-java -cp .:junit-4.13.1.jar:hamcrest-core-1.3.jar: org.junit.runner.JUnitCore unittest.ModelTest
+java -cp .:junit-4.13.1.jar:hamcrest-core-1.3.jar: org.junit.runner.JUnitCore unittest.Test
  ```
 there is also a JAR named CS5001-p3.jar in CS5001-p3/ could conduct directly.
 
