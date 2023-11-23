@@ -1,17 +1,13 @@
-package Test;
+package unittest;
 
-import Controller.DrawingPanel;
-import Model.Model;
-import Model.Vector;
-import View.MainUI;
-import View.NetworkService;
+import controller.DrawingPanel;
+import model.Vector;
+import view.MainUI;
+import view.NetworkService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import java.awt.*;
-
-import java.awt.*;
-import java.awt.event.InputEvent;
 
 public class test {
 

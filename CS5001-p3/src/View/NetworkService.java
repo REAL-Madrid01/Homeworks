@@ -1,16 +1,12 @@
-package View;
+package view;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonReader;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import Controller.DrawingPanel;
-import Model.Vector;
-import View.JSONUtils;
+
+import model.Vector;
 
 /**
  * NetworkService class responsible for handling network-related operations in the drawing application.

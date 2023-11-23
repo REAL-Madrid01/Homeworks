@@ -1,10 +1,10 @@
-package View;
+package view;
 
 import javax.json.*;
 import java.io.StringReader;
 import java.util.*;
 import java.awt.Color;
-import Model.Vector;
+import model.Vector;
 
 /**
  * Utility class for handling JSON operations related to vector objects.

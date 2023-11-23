@@ -1,7 +1,6 @@
 # Vector Drawing Application
 
 **Report for CS5001-p3 Assessment**  
-**Author: Zhiqi Pu**
 
 ## Overview
 
@@ -9,13 +8,22 @@ The Vector Drawing Application is a Java-based vector graphic drawing tool, offe
 
 ## Installation
 
-To use this application, you need to run the provided JAR file on a computer with Java Runtime Environment (JRE) or execute the `Model.class` main function.
+To use this application, you should use steps below to compile, run and test it
+first, plz cd to CS5001-p3/src
+then, compile codes
+ ```bash
+javac -cp .:javax.json-1.0.jar:junit-4.13.1.jar: controller/*.java model/*.java unittest/*.java view/*.java
+ ```
+then, run model.Model main class
+```bash
+java -cp .:javax.json-1.0.jar: model.Model
+ ```
+finally, using JUnit test codes
+```bash
+java -cp .:junit-4.13.1.jar:hamcrest-core-1.3.jar: org.junit.runner.JUnitCore unittest.ModelTest
+ ```
+there is also a JAR named CS5001-p3.jar in CS5001-p3/ could conduct directly.
 
-1. Ensure that Java Runtime Environment (JRE) is installed on your computer.
-2. Open the file located at `..\out\artifactsCS5001-p3.jar` or run the following command in the command line to start the application:
-   ```bash 
-   java -jar artifactsCS5001.jar
-   ```
 
 ## Feature Overview
 

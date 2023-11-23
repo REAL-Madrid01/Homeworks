@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import Controller.DrawingPanel;
+import controller.DrawingPanel;
 
 import javax.swing.*;
 import java.awt.*;

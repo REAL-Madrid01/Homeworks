@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
-import Model.Vector;
-import View.JSONUtils;
-import View.NetworkService;
+import model.Vector;
+import view.JSONUtils;
+import view.NetworkService;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

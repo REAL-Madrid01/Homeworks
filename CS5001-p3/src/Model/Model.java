@@ -1,7 +1,7 @@
-package Model;
+package model;
 
-import View.MainUI;
-import View.NetworkService;
+import view.MainUI;
+import view.NetworkService;
 
 /**
  * The main class of the application that initiates and runs the drawing application.
