@@ -1,0 +1,166 @@
+a variable store in R have its storage space in computer memory, we could use assignment operator <- to move values into it.
+
+fixed numbers store in R: True/False, pi, Null, Inf, NaN, NA, where inf - inf and Inf/Inf return NaN, NA means missing values, it never return from a 
+
+undefined calculation only from missing information.
+
+multiplication of matrix, * means dot, %*% means matrix multiplication.
+
+variable types also contains: txt, factor.
+
+str(dataframe) help us find type of each variable, we could use any(is.na(data)), we also could use colnames(dataframe) <- c(“a”, “b”, …) rename colnames.
+
+rep(c(1,2), times=2) means return 1,2,1,2, while rep(c(1,2), each=2) return 1,1,2,2. seq(1, 4, length=1) is very useful, same as 1:4.
+
+what’s an algorithm: an algorithm is a set of unambiguous instructions to execute that have a clear order and that can be executed in finite time.
+	three features:
+		unambiguous: each instruction must be detailed enough for the instruction to be carried out and only use terms that are well-defined.
+		order: it must be clear in which order that instructions should be executed.
+		finite: it must finish or stop in finite time.
+	three component:
+		input: what information should be satisfied to instructions.
+		instructions: what instructions make the algorithm and how do they use the input.
+		output: what information will the algorithm return.
+
+we could using rejection sampling to simulate Normal random variables, one way to describe it is that we give the enough samples by rnorm(n, mean, sd), we could have a histgram plot which be similar with normal distribution PDF.
+in there, rnorm() is used for generating random deviates. By the increase of the n(number of samples), the hist should be close to normal distribution. After smooth the line based on samples, any random points(x, y) where y below our lines is maintain Normal distribution assumption, that's what could adopt to use later.
+
+how do we justify rejecting sample method, does it satisfy three requirements, firstly, it is unambiguous and have ordered instructions, however, it does not promise return in a finite time, more precisely, it does not return the appropriate outputs(n samples). 
+
+the pseudo-code:
+	1. simulate y value
+	2. compute PDF value f(x)
+	3. if y < f(x), keep x as a random sample
+
+R code:
+	x<- runif(1, -20, 20)
+	y<- runif(1, 0, 0.06)
+	f<- dnorm(x, est.mu. est.sd)
+	if (y <= f) sample <- x
+
+Control structure: using for(), while(), break to ensure algorithm return in finite time.
+vectorization: vectorization is when there is a built-in functionality within R that applies an operation across a vector without the need to write loop explicitly.
+
+Modular programming/modularity
+	definition: a "module" is a generic term used in programming to mean a chuck of code that is packaged up to be used as a stand-alone unit, 		functions are examples of this.
+	advantages: the code only need to write once and could be re-called by the module and it make easier to revise if some errors are found.
+	DRY principle: DRY represent dont repeat yourself related to the idea of modularity.
+	Encapsulation: this means functions should be closed don't interact with anything outside their body, the inputs should maintain all 			instructions.
+functions are piece of code that are bound together to make a single command, functions are central to many forms of programming(ofter called functional programming)
+	
+scope: every variable have a scope, termed local scope or local variables, create in functions and destory by the end of function. If we wish a variable in global scope, create it outside the function, besides that, if we passed the global scope variable to function directly, any change to it will affect its value(it named pass by reference), if copy global scope variable in functions(it named pass by values).
+in R, we default pass variables by reference unless function point out some variables will pass by values.
+
+Good practices
+	 besides the modularity, besides the instructions, ordered and finite running time, code also should maintain maintainable(easily for others modify your work) and reproducible(result could be verify).
+
+progarmming Language to use
+	5 Generations:
+		1. First-Generation: machine language(binary), 
+		2. Second-Generation: assembly language which is a human-readable form of binary.
+		3. Third-Generation: java, C++， Python.
+		4. Fourth-generation: languages are designed with a particular use in mind. R, SQL.
+		5. Fifth-generation: very special written by expert such as Stan to address specific problems.
+	3, 4, 5 are mostly choosed in reality.
+	Interpreted languages: executed line by line such as R and Python.
+	Compiled languages: which should firstly compiled into machine language then can be executed. Pros: could consider all instructions once, Cons:
+				have to re-compile each time.
+	
+programming design approaches
+	1. waterfall approach: design each step carefully, once completed could not be modified. Pros: make plan ahead. Cons: cannot go back.
+	2. agile approach: slove problems through small steps and iteratively work towards completion of the aim. Pros: could revise. Cons: small steps
+
+Code design: we could use pseudo code(half English and half codes) or flowcharts to explain ordered instructions.
+	good coding style:
+		1. each line should < 80.
+		2. give comment of each file, remember use relative path, and comment on inputs process and outputs of function but don't overcomment.
+		3. do not use attach command.
+
+Testings
+	How to build test: Inputs selected for function, ExpectedOutputs what we expected to see. Outputs actual outputs, Test asseration(write a 		short script rather than a command that could perform at any time).
+	result could be saved as CSV, RData, RDS files
+
+Computer arithmetic
+	1. Vector and Matrix dimensions are stored in R using integer Type(Integers are stored in a 32 bit fixed point system, which means 
+		as.integer(2^31) return NA, as.integer(2^31-1) return true value), most numbers stored using numeric or doubles.
+	2. A fixed point number(a,b,c,d...) in binary represent integer value. if the fixed point number is unsigned then represent positive integer, 		else if it is signed then first digit a is 1 if the number is negative and 0 if the number is positive, the remaining digits represent 		the absolute values of the integer as in the unsigned integers. one digit refer to one bit in memory space.
+	3. If we have k bits, the biggest number we could store is 2^k-1 in unsigned, while it is 2^(k-1)-1 in signed.
+	4. Integer overflow is a error that we try store 2^32 or bigger integer on computer.
+	5. a floating point number(real number) is represented using three parts: a Sign S(one bit), a fractional part F(a unsigned integer) and an 		exponent E(a signed integer). for example,  01110001 equals (-1)^(S)*2(-(2+1))*2^(-4) where S=0(first digit) E=(111) 1 means use 		negative because E is signed here so first digit use to determine postive/negative, range are determined by remains digit(k-1),
+		F=2^(-1)*0 + 2^(-2)*0 + 2^(-3)*0 +2^(-4)*1.
+	6. Underflow is the error that we try to represent a number in a floating point number but it < smallest number.
+
+Computer-intensive statistics
+	1. Welch Two sample t-test -- parametric test
+		when we use t.test(mpg ~ origin, data=dat, alternative="less") to detect whether the mean of first group < second group. usually we use
+			alternative="two.sided", while alternative="greater" is mean of group 1 > mean of group 2.
+		while t-test assume data are normally distributed, plot qqnorm() and qqline() check it, but it's hard to determine it for small sample 			sizes.
+	2. Randomization test -- non parametric test (dont need data to maintain specific distribution)
+		1. randomization test is used to determine whether or not there is evidence against a null hypothesis in favour of an alternative 			hypothesis. By store 1000 times sample size == data nrow and calculate mean of difference(mean1 - mean2)/variance of difference
+			(var1/var2, it's called odds) and calculate probability of difference greater than original difference. explain about it: maybe 			it is by accident we got a dataset have this difference under ditribution of our 1000 sample times, but more plausible reason 			is that there does have a difference between two groups, p value = sum(diff < original_diff) / sample_times.
+		2. steps for randomization test:
+			i. Choose Hypothesis(Null hypothesis: have same mean/median/standard deviation and its alternative hypothesis)
+			ii. test statistic(determined by Null hypothesis).
+			iii. randomize we need to create the test distribution maintain Null hypothesis(no difference of means/group labels doesn't 				matter), so we random distribute each line to a group to simulate randomize group.
+		3. permutation test: we should get enough samples to make sure that could generate test distribution satisfy the Null hypothesis, 
+			especially for small dataset size, the best way is generate all possible randomizations of data, it is called permutation test.
+	3. Bootstrap -- non parametric (a way to generate approximate distribution for estimators by re-sampling the data)
+		re-sample data and plot hist() of estimator from each sample result, the difference between Bootstrap and Randomization is that former 			assume the empirical distribution of our observed data(hist are generated by observed data rather than re-order sampling) is 			the true distribution while latter assume the Null hypoythesis distribution is the true distribution.
+		CI: we could use percentile bootstrap interval,quantile(results, prob=c(0.025, 0.975))
+	4. Bootstrap -- parametric
+		re-sample data from a model rather dataset, estimator is updated by given distribution p_hat, so we could generate 1000 p_hat then 			resample 1000 times dataset. So the parametric bootstrap can be used to approximate the distribution of a quality that is a 
+			transformation of one or more random variables.
+	5. Numerical Integration
+		1. Riemann: retangle multiplication, we could manually divide x's interval and calculate y then sum(y*dx) or easily using 				itegrate(f,x1,x2). Pros: very simple to get approximate integrals. Cons: each f(x) calculation might be expensive, only 			acceptable if x have only one dimension, if x have 2 dimension, the length of x interval is 100, the calculation become 100^2.
+		2. Newton-Cotes: a deterministic algorithm, the idea is to approximate the f with a polynomial(Lagrange polynomial we used here), 			Newton-Cotes cost less calculations compares with Riemann. if we use x.mid to calculate integral(f(x.mid)*(x2-x1)) it's called 			midpoint rule. if we use two points in x grids, it's called trapezoidal rule. if use three points in x grid, it's called 			Simpson's rule. if we keep use more points, it's higher order polynomials. if divide x interval into many bins then use 			Simpson'rule, it's called sub-intervals. higher order polynomials and sub-intervals are good ways to improve accuracy. However,
+			the lagrange polynomial we used here dont perform good when points are too much, so it is better to give small points(1,2,3,4).
+		3. Gussian Quadrature: using integrate() in R called Gauss-Kronrod quadrature(it also use the sub-interval idea). The idea of Gaussian 			quadrature is to use more than one approximate polynomials on a grid of point to approximate the integral of f. we donnot 			approximate f like Newton-Cotes, we approximate gird points and weights simga[(w_i*p(x_i))] of any polynomials (we use lagrange 			before).
+		4. Monte-Carlo -- Stochastic Integration (when f have high dimension or f is an irregular function)
+			the idea of Monte-Carlo is to approximate the mean of f of interval x1 to x2, the main part of Monte-Carlo is what we 				produce samples, we should plot a curve of f and observe what f changes in different area(might higher at first then 
+			lower at bigger x), so we should sample more at begin because higher value of f distribution there have more effect on
+			result, we use a q(x) to revise it in sampling process and it called importance sampling, we usually use mixture 				gaussian model for q(x) because it has two region of importance. Steps for set mixture gaussian model to approximate f
+			as belows.
+				i. find highest and lowest vaule of f and their related x are means of two normal ditribution. find the x'wave 						of highest/lowest value of f and they are sd of two normal distribution.
+				ii. approximate density p by using p1 + p2, where p1 = highest_value_of_f *  										dnorm(x_range,mean1,sd1)/max(dnorm(x_range,mean1,sd1)). do it similar to p2(lowest_value_of_f *...).					iii. use dtruncnorm, it allow us to ignore curve of f'shape, return q as we did before. 								mean(f(x1,x2,...,xn)/p(x1,x2,...,xn)) is the integral we expect to see.
+
+Optimization methods
+	1. grid research, Pros: robust algorithm especially can deal with f not smooth or continuous and perform good if f have many local minimums,
+		Cons: require fairly fine grid of values to reach the given error, which means it cost much calculation than other methods.
+	2. bisection method, stopping rule: x2-x1 is smaller than given error. Pros: efficient and robust. Cons: f should be smooth.
+	3. optimize: using bisection method for univariate optimization.
+	4. Newton's method in 1D, step δ = -f'(θ)/f''(θ), θ_new = θ + δ, where f'(θ) can be calculated using grad(), f''(θ) can be calculated using 		hessian(). stopping rule: δ smaller than error given. Pros: highly efficient and works on wide of f. Cons: dont guarantee that it will 		converge to a minimum(might converge to maximum or inflection point) or dont converge because the f shape like a circular, step size is 
+		hard to determined because of the parameter's value size is unknown. ways to slove third Cons, using f'(θ) < ε and δ < ε.
+	5. Multivariate Newton's method: unlike using negative maximum log-likelihood in univariate optimization, we use residual sum of square(RSS) 		here. step δ = -H^(-1) * g, where g and H could calculated by using gfn() and Hfn(), δ could calculated by using slove(H, -g). stopping
+		rule is: Norm(δ/θ) < ε.
+	6. optim: it is a standard optimizer when change method="BFGS" it could handle newton method, but it is sensitive and does not work well.
+	7. nlm: it is known as a quasi-Newton method include both step size and BFGS extension.
+	8. Gausson-Newton method: particular to non-linear least square(RSS). g = 2 * t(J) %*% resid, H = 2 * t(J) %*% J, step δ = solve(H, -g).
+	9. nls: using to fit non-linear least square models by using Gauss-Newton method.
+
+Reproducibility and graphics
+
+
+Linear programming (LP)
+	definition: 
+		Matrix form of LP: Maximise Z = C^T * X, where subject to AX<= b and X>=0, A,C,b is certainty and at integer LP situation, some of all 		x must be non-negative integers, numbers of C or X are n.
+		Minimise Z = C^T * X, where subject to AX >= b and X>=0,
+	constraints: Inequalities used to limit variables and they are conditions of OF, if constraint donnot touch FR it called redundant.
+	objective functions: OF(the aim of maximum/mminimum based on variables).
+
+	Graphic solution: the set of values of x satify all constraints called feasible region(FR), all of FR named feasible solution space.
+	any non-empty FR should be a convex set.
+	
+	Slack variables: AX+s=b(maximise)/AX-s=b(minimise), where we need nrow(A)==m slack variables s to turn inequality into equality and s >=0.
+	Basic and non-basic variables: assuming at one solution exist on m equation and there are no redundant equations, we could use basic solution
+		to solve it. firstly, set n of m+n variables to 0(plot feasible region to determine which variables should be set equal to 0), we could 		find some variables be negative, which donot satisfy x and s >=0, a non-negative basic solution is called feasible basic solution(fbs), 		the solution variable called basic variables, the variales set equal to 0 are non-basic variables. adjust vertex by replacing one basic 
+		variables with a non-basic variables.
+	dual problem: change the place of C and b and inequation direction. if primal problem is: maximise Z = C^T * X, AX<= b, X>=0, its dual problem
+		is minimise W = b^T * Y, A^T*Y>= C, Y>=0.
+		Corollary 1: if X_f and Y_f are solutions to primal and dual problems while C^T * X_f == b^T * Y_f then X_f and Y_f are optimal 			solutions.
+		Corollary 2: if there are feasible solutions to primal problem but objective function is unbounded, there is no feasible solution to 			dual problem.
+	
+Parallel programming
+	forking and socket: lauched on each worker, each work run on empty environment and runs separately(socket). copying of master process share 
+		environment(forking).
+	when it be advantageous to use it: apply, lapply, sapply, it is infeasible to use it when you try access a variable defined in the main 		process or try to access a variable in the main process where defined in subprocess.
+	the achievable performance does not scale linearly with the number of cores, Amdahl'law is used to estimate the expected speedup.	
